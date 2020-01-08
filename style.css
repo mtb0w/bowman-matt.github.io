@@ -1,0 +1,23 @@
+#git {
+    border-color: white;
+    width: 175px;
+    background-color: #6e5494;
+    color:white;
+    font-size: 13px;
+    padding: 8px 20px;
+    border-radius: 8px;
+    box-shadow: 2px 2px #999;
+    outline: none;
+}
+
+#linked {
+    border-color: white;
+    width: 175px;
+    background-color: #0077b5;
+    color:white;
+    font-size: 13px;
+    padding: 8px 20px;
+    border-radius: 8px;
+    box-shadow: 2px 2px #999;
+    outline: none;
+}
