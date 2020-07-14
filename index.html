@@ -3,11 +3,13 @@
 <script src="main.js" charset="utf-8" type="text/javascript"></script>
 <link rel="stylesheet" href="style.css">
 <body style="background-color:#fff0c2;">
+
 <center>
   <h1> Hello World</h1>
   <p> I'm Matt. </p>
   <b>Current Time: </b><b id="timeHour"></b><b>:</b><b id="timeMinute"></b><b>:</b><b id="timeSeconds"></b>
 </center>
+
 <div id="buttons">
 <form action="https://github.com/bowman-matt">
     <button type="submit" id="git">Github Profile</button>
@@ -17,5 +19,74 @@
     <button type="submit" id="linked">LinkedIn Profile</button>
   </form>
 </div>
+
+<style>
+       #map {
+        height: 400px;
+        width: 100%;
+       }
+
+       #searchTextField {
+         width: 300px;
+         font-size: 20px;
+         margin-bottom: 20px;
+       }
+</style>
+
+	<p>
+    <div>
+      <input type="text" id="searchTextField">
+    </div>
+    
+    <div id="map"></div>
+    
+      function initMap() {
+
+        // A couple of places
+        var brunchPos = {lat: 40.7128793, lng: -74.0060454};
+        var faboritPos = {lat: 40.7128793, lng: -74.0060454};
+
+        // Create map, draw it in the targetElem and sets the cameraPosition
+        var targetElem = document.getElementById('map');
+        var cameraPosition = { zoom: 13, center: faboritPos };
+        var map = new google.maps.Map(targetElem, cameraPosition);
+
+        // We have already displayed the map, let's add markers
+
+        // Create markers in the map
+        var marker1 = new google.maps.Marker({ map: map, position: faboritPos });
+        var marker2 = new google.maps.Marker({ map: map, position: brunchPos });
+
+        // Now let's setup the autocomplete input, with which we can add more markers
+
+        // Autocomplete input
+        var input = document.getElementById('searchTextField');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo('bounds', map);
+
+        // Listen to autocomplete input
+        autocomplete.addListener('place_changed', function() {
+
+          var place = autocomplete.getPlace();
+          if (!place.geometry) {
+            // User entered the name of a place that was not suggested and
+            // pressed the Enter key, or the Place Details request failed.
+            window.alert("No details available for input: '" + place.name + "'. Select one of the results.");
+            return;
+          }
+
+          // Add marker in map
+          var marker = new google.maps.Marker({ map: map, position: place.geometry.location });
+        });
+
+      }
+    </script>
+    
+    <!-- Loads maps library (with places library) and then calls initMap() -->
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?libraries=places&callback=initMap&key=AIzaSyBDG_EhRYWsbU0uFvLcXBH50YTg6N24qbs">
+    </script>
+    
+    
 </body>
 </html>
